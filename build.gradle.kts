@@ -4,4 +4,5 @@ plugins {
     alias(libs.plugins.androidLibrary).apply(false)
     alias(libs.plugins.kotlinAndroid).apply(false)
     alias(libs.plugins.kotlinMultiplatform).apply(false)
+    id("org.jetbrains.compose").version("1.5.12") apply false
 }
