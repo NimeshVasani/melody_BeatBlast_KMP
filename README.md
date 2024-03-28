@@ -14,13 +14,15 @@ All copyright reserved @Nimesh Vasani
 
 Hey GitHub Community! 👋
 
-We're thrilled to introduce **MelodyBeatBlast**, a revolutionary Kotlin Multiplatform (KMP) app designed to redefine your music listening experience across Android, iOS, Web, and Desktop platforms. MelodyBeatBlast isn't just another music app; it's a versatile tool crafted with the power of KMP and integrated with the Spotify Web API to deliver seamless access to songs, playlists, user info, and more, all in one place.
+We're thrilled to introduce **MelodyBeatBlast**, a revolutionary [Kotlin Multiplatform (KMP)](https://kotlinlang.org/docs/multiplatform.html) app designed to redefine your music listening experience across Android, iOS, Web, and Desktop platforms. MelodyBeatBlast isn't just another music app; it's a versatile tool crafted with the power of KMP and integrated with the Spotify Web API to deliver seamless access to songs, playlists, user info, and more, all in one place.
+
+Built With : [Jetpack Compose](https://developer.android.com/develop/ui/compose), [MVVM in KMP](https://www.jetbrains.com/kotlin-multiplatform/#:~:text=Kotlin%20Multiplatform%20is%20a%20technology,Windows%2C%20Linux%2C%20and%20others.), [Spotify Developer Api](https://developer.spotify.com), etc.
 
 ## Key Features:
 
 - **Cross-Platform Compatibility**: Enjoy your favorite tunes on any device, whether it's your smartphone, tablet, desktop, or laptop.
   
-- **Spotify Integration**: Tap into the vast Spotify library effortlessly, fetching songs, playlists, and user information directly from the Spotify Web API.
+- **[Spotify Integration](https://developer.spotify.com)**: Tap into the vast Spotify library effortlessly, fetching songs, playlists, and user information directly from the Spotify Web API.
   
 - **Play Song Feature**: Dive into the music instantly with the play song feature, allowing you to groove to your favorite beats without any hassle.
   
