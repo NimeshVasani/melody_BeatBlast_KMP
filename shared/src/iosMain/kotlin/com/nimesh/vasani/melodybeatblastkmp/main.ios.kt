@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,9 +24,11 @@ import com.seiko.imageloader.util.DebugLogger
 import com.seiko.imageloader.util.LogPriority
 import platform.UIKit.UIViewController
 
+
+@Composable
 fun MainiOS(
     lifecycle: LifecycleRegistry,
-): UIViewController = Application("Music-App") {
+) {
     val api = SpotifyApiImpl()
 
     val rootComponent = MusicRootImpl(

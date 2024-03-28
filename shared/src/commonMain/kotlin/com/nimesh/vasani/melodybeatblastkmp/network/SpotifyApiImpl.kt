@@ -96,7 +96,7 @@ class SpotifyApiImpl : SpotifyApi {
             encodedPath = path
             headers {
                 append(
-                    HttpHeaders.Authorization, TOKEN
+                    HttpHeaders.Authorization, "Bearer $TOKEN"
                 )
             }
         }

@@ -18,9 +18,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
-/**
- * Created by abdulbasit on 19/03/2023.
- */
+
 class MusicRootImpl(
     componentContext: ComponentContext,
     private val mediaPlayerController: MediaPlayerController,
@@ -93,6 +91,9 @@ class MusicRootImpl(
         }
     }
 
+    private fun playerScreenOutput(){
+        Configuration.Dashboard
+    }
     private fun detailsOutput(output: ChartDetailsComponent.Output) {
         when (output) {
             is ChartDetailsComponent.Output.GoBack -> navigation.pop()
@@ -140,6 +141,9 @@ class MusicRootImpl(
     override val dialogOverlay: Value<ChildOverlay<*, PlayerComponent>>
         get() = player
 
+    override fun navigateToPlayerScreen() {
+    }
+
     private fun value() = stack
 
     private sealed class Configuration : Parcelable {
@@ -151,10 +155,14 @@ class MusicRootImpl(
             val playlistId: String,
             val playingTrackId: String,
         ) : Configuration(), Parcelable
+
+
     }
 
+
+
     @Parcelize
-    private data class DialogConfig(
+    data class DialogConfig(
         val playlist: List<Item>
     ) : Parcelable
 }

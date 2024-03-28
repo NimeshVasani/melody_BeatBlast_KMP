@@ -4,9 +4,10 @@ import androidx.compose.ui.window.CanvasBasedWindow
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.arkivanov.essenty.lifecycle.resume
-import com.example.musicapp_kmp.decompose.MusicRootImpl
-import com.example.musicapp_kmp.network.SpotifyApiImpl
-import com.example.musicapp_kmp.player.MediaPlayerController
+import com.nimesh.vasani.melodybeatblastkmp.decompose.MusicRootImpl
+import com.nimesh.vasani.melodybeatblastkmp.network.SpotifyApiImpl
+import com.nimesh.vasani.melodybeatblastkmp.player.MediaPlayerController
+import com.nimesh.vasani.melodybeatblastkmp.player.PlatformContext
 import org.jetbrains.skiko.wasm.onWasmReady
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -17,7 +18,7 @@ fun main() {
             MusicRootImpl(
                 componentContext = DefaultComponentContext(
                     lifecycle = lifecycle,
-                ), api = SpotifyApiImpl(), mediaPlayerController = MediaPlayerController()
+                ), api = SpotifyApiImpl(), mediaPlayerController = MediaPlayerController(platformContext = PlatformContext())
             )
 
         lifecycle.resume()

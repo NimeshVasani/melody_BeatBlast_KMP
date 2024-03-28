@@ -3,17 +3,27 @@ package com.nimesh.vasani.melodybeatblastkmp.playerview
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,13 +38,15 @@ import com.seiko.imageloader.rememberAsyncImagePainter
 
 
 @Composable
-internal fun PlayerView(playerComponent: PlayerComponent) {
+internal fun PlayerView(playerComponent: PlayerComponent, onclick: () -> Unit) {
     val state = playerComponent.viewModel.chartDetailsViewState.collectAsState()
     val mediaPlayerController = state.value.mediaPlayerController
     val selectedTrackPlaying = state.value.playingTrackId
     val trackList = state.value.trackList
 
     val selectedIndex = remember { mutableStateOf(0) }
+    var playIcon by remember { mutableStateOf(if (mediaPlayerController.isPlaying()) "▶" else "⏸") }
+
     val isLoading = remember { mutableStateOf(true) }
     val selectedTrack = trackList[selectedIndex.value]
 
@@ -57,6 +69,8 @@ internal fun PlayerView(playerComponent: PlayerComponent) {
     Box(
         modifier = Modifier.fillMaxWidth().background(Color(0xCC101010))
             .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 56.dp)
+            .clickable { onclick.invoke() }
+
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             val painter = rememberAsyncImagePainter(
@@ -80,14 +94,16 @@ internal fun PlayerView(playerComponent: PlayerComponent) {
             }
             Column(Modifier.weight(1f).padding(start = 8.dp).align(Alignment.Top)) {
                 Text(
-                    text = selectedTrack.track?.name.orEmpty(), style = MaterialTheme.typography.caption.copy(
+                    text = selectedTrack.track?.name.orEmpty(),
+                    style = MaterialTheme.typography.caption.copy(
                         color = Color(
                             0XFFEFEEE0
                         )
                     )
                 )
                 Text(
-                    text = selectedTrack.track?.artists?.map { it.name }?.joinToString(",").orEmpty(),
+                    text = selectedTrack.track?.artists?.map { it.name }?.joinToString(",")
+                        .orEmpty(),
                     style = MaterialTheme.typography.caption.copy(
                         color = Color(
                             0XFFEFEEE0
@@ -97,35 +113,37 @@ internal fun PlayerView(playerComponent: PlayerComponent) {
                 )
             }
             Row(modifier = Modifier.align(Alignment.CenterVertically)) {
-                Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    tint = Color(0xFFFACD66),
-                    contentDescription = "Back",
-                    modifier = Modifier.padding(end = 8.dp).size(32.dp).align(Alignment.CenterVertically)
+                Text(
+                    "⏮",
+                    color = Color(0xFFFACD66),
+                    modifier = Modifier.padding(end = 8.dp).size(32.dp)
+                        .align(Alignment.CenterVertically)
                         .clickable(onClick = {
                             if (selectedIndex.value - 1 >= 0) {
                                 selectedIndex.value -= 1
                             }
                         })
                 )
-                Icon(
-                    imageVector = Icons.Filled.PlayArrow,
-                    tint = Color(0xFFFACD66),
-                    contentDescription = "Play",
-                    modifier = Modifier.padding(end = 8.dp).size(32.dp).align(Alignment.CenterVertically)
+                Text(
+                    playIcon,
+                    color = Color(0xFFFACD66),
+                    modifier = Modifier.padding(end = 8.dp).size(32.dp)
+                        .align(Alignment.CenterVertically)
                         .clickable(onClick = {
                             if (mediaPlayerController.isPlaying()) {
+                                playIcon = "▶"
                                 mediaPlayerController.pause()
                             } else {
+                                playIcon = "⏸"
                                 mediaPlayerController.start()
                             }
                         })
                 )
-                Icon(
-                    imageVector = Icons.Default.ArrowForward,
-                    tint = Color(0xFFFACD66),
-                    contentDescription = "Forward",
-                    modifier = Modifier.padding(end = 8.dp).size(32.dp).align(Alignment.CenterVertically)
+                Text(
+                    "⏭",
+                    color = Color(0xFFFACD66),
+                    modifier = Modifier.padding(end = 8.dp).size(32.dp)
+                        .align(Alignment.CenterVertically)
                         .clickable(onClick = {
                             if (selectedIndex.value < trackList.size - 1) {
                                 selectedIndex.value += 1
@@ -137,7 +155,7 @@ internal fun PlayerView(playerComponent: PlayerComponent) {
     }
 }
 
-private fun playTrack(
+fun playTrack(
     selectedTrack: Item,
     mediaPlayerController: MediaPlayerController,
     isLoading: MutableState<Boolean>,
@@ -162,6 +180,7 @@ private fun playTrack(
                     selectedIndex.value += 1
                 }
             }
+
         })
     } ?: run {
         if (selectedIndex.value < trackList.size - 1) {

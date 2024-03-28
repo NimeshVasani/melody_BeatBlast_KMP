@@ -3,9 +3,7 @@ package com.nimesh.vasani.melodybeatblastkmp.decompose
 import com.nimesh.vasani.melodybeatblastkmp.dashboard.DashboardViewModel
 
 
-/**
- * Created by abdulbasit on 19/03/2023.
- */
+
 interface DashboardMainComponent {
     val viewModel: DashboardViewModel
 

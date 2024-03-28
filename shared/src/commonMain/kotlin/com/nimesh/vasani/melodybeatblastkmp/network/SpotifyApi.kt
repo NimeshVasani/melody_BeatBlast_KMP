@@ -5,9 +5,7 @@ import com.nimesh.vasani.melodybeatblastkmp.network.models.newreleases.NewReleas
 import com.nimesh.vasani.melodybeatblastkmp.network.models.topfiftycharts.TopFiftyCharts
 
 
-/**
- * Created by abdulbasit on 26/02/2023.
- */
+
 interface SpotifyApi {
     suspend fun getTopFiftyChart(): TopFiftyCharts
     suspend fun getNewReleases(): NewReleasedAlbums

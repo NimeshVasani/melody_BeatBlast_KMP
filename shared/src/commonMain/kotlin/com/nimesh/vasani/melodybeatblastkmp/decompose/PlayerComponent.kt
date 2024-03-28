@@ -4,9 +4,6 @@ import com.nimesh.vasani.melodybeatblastkmp.network.models.topfiftycharts.Item
 import com.nimesh.vasani.melodybeatblastkmp.playerview.PlayerViewModel
 
 
-/**
- * Created by abdulbasit on 19/03/2023.
- */
 
 interface PlayerComponent {
     val viewModel: PlayerViewModel

@@ -17,6 +17,8 @@ import com.nimesh.vasani.melodybeatblastkmp.chartdetails.ChartDetailsScreenLarge
 import com.nimesh.vasani.melodybeatblastkmp.dashboard.DashboardScreen
 import com.nimesh.vasani.melodybeatblastkmp.dashboard.DashboardScreenLarge
 import com.nimesh.vasani.melodybeatblastkmp.decompose.MusicRoot
+import com.nimesh.vasani.melodybeatblastkmp.decompose.MusicRootImpl
+import com.nimesh.vasani.melodybeatblastkmp.player.PlayerScreen
 import com.nimesh.vasani.melodybeatblastkmp.playerview.PlayerView
 
 @Composable
@@ -49,12 +51,18 @@ internal fun MainCommon(
                             else
                                 ChartDetailsScreen(child.detailsComponent)
                         }
+
+                        is MusicRoot.Child.PlayerScreen ->{
+                        }
                     }
                 }
             }
             Box(modifier = Modifier.align(Alignment.BottomEnd)) {
                 dialogOverlay.overlay?.instance?.also {
-                    PlayerView(it)
+                    PlayerView(it, onclick = {
+
+                        rootComponent.navigateToPlayerScreen()
+                    })
                 }
             }
         }

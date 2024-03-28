@@ -13,9 +13,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
-/**
- * Created by abdulbasit on 26/02/2023.
- */
+
 class PlayerViewModel(
     mediaPlayerController: MediaPlayerController,
     trackList: List<Item>,

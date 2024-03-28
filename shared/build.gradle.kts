@@ -52,7 +52,6 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material)
             implementation(compose.runtime)
-
             implementation("io.ktor:ktor-client-core:$ktorVersion")
             implementation("io.ktor:ktor-client-json:$ktorVersion")
             implementation("io.ktor:ktor-client-logging:$ktorVersion")

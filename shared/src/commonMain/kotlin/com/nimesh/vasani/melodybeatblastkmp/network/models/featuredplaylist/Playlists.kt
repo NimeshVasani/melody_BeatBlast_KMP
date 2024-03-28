@@ -1,7 +1,6 @@
 package com.nimesh.vasani.melodybeatblastkmp.network.models.featuredplaylist
 
 
-import com.nimesh.vasani.melodybeatblastkmp.network.models.featuredplaylist.Item
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

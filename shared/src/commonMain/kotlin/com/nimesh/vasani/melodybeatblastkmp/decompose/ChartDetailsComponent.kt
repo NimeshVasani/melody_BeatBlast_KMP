@@ -6,9 +6,7 @@ import com.nimesh.vasani.melodybeatblastkmp.chartdetails.ChartDetailsViewModel
 import com.nimesh.vasani.melodybeatblastkmp.network.models.topfiftycharts.Item
 
 
-/**
- * Created by abdulbasit on 19/03/2023.
- */
+
 
 interface ChartDetailsComponent {
     val viewModel: ChartDetailsViewModel
