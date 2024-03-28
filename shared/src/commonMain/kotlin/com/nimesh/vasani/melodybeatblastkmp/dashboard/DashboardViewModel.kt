@@ -23,6 +23,7 @@ class DashboardViewModel(api: SpotifyApi) : InstanceKeeper.Instance {
     init {
         viewModelScope.launch {
             try {
+
                 val topFiftyCharts = async { api.getTopFiftyChart() }.await()
                 val newReleasedAlbums = async { api.getNewReleases() }.await()
                 val featuredPlaylist = async { api.getFeaturedPlaylist() }.await()

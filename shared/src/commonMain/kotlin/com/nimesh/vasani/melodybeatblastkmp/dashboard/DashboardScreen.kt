@@ -9,11 +9,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ScaffoldState
+import androidx.compose.material.Snackbar
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,16 +26,18 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.nimesh.vasani.melodybeatblastkmp.TOKEN
 import com.nimesh.vasani.melodybeatblastkmp.decompose.DashboardMainComponent
 import com.nimesh.vasani.melodybeatblastkmp.network.models.featuredplaylist.FeaturedPlayList
 import com.nimesh.vasani.melodybeatblastkmp.network.models.newreleases.NewReleasedAlbums
 import com.nimesh.vasani.melodybeatblastkmp.network.models.topfiftycharts.TopFiftyCharts
 import com.seiko.imageloader.rememberAsyncImagePainter
+import io.ktor.client.plugins.logging.Logging
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
-/**
- * Created by abdulbasit on 26/02/2023.
- */
 
 @Composable
 internal fun DashboardScreen(dashboardMainComponent: DashboardMainComponent) {
@@ -70,6 +75,7 @@ internal fun Failure(message: String) {
     }
 }
 
+@OptIn(DelicateCoroutinesApi::class)
 @Composable
 internal fun DashboardView(
     dashboardState: DashboardViewState.Success,
@@ -81,6 +87,8 @@ internal fun DashboardView(
             .verticalScroll(listState)
             .padding(bottom = 32.dp)
     ) {
+
+        println(TOKEN+"1")
         TopChartView(dashboardState.topFiftyCharts, navigateToDetails)
         FeaturedPlayLists(dashboardState.featuredPlayList, navigateToDetails)
         NewReleases(dashboardState.newReleasedAlbums, navigateToDetails)

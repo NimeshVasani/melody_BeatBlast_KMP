@@ -3,7 +3,11 @@ package com.nimesh.vasani.melodybeatblastkmp
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
@@ -23,8 +27,11 @@ internal fun MainCommon(
     val dialogOverlay by rootComponent.dialogOverlay.subscribeAsState()
 
     MyApplicationTheme {
+
         Box(modifier = Modifier.fillMaxSize()) {
+
             Box(modifier = Modifier.fillMaxSize()) {
+
                 Children(
                     stack = rootComponent.childStack
                 ) {

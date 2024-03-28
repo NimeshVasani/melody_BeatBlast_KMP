@@ -1,40 +1,50 @@
 package com.nimesh.vasani.melodybeatblastkmp.network
 
 import com.nimesh.vasani.melodybeatblastkmp.TOKEN
+import com.nimesh.vasani.melodybeatblastkmp.dummydata.featurePlaylistResponse
+import com.nimesh.vasani.melodybeatblastkmp.dummydata.newReleases
 import com.nimesh.vasani.melodybeatblastkmp.dummydata.topFiftyChartsResponse
 import com.nimesh.vasani.melodybeatblastkmp.network.models.featuredplaylist.FeaturedPlayList
 import com.nimesh.vasani.melodybeatblastkmp.network.models.newreleases.NewReleasedAlbums
 import com.nimesh.vasani.melodybeatblastkmp.network.models.topfiftycharts.TopFiftyCharts
-import featurePlaylistResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
+import io.ktor.client.request.forms.submitForm
+import io.ktor.client.statement.bodyAsText
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
+import io.ktor.util.InternalAPI
+import io.ktor.util.appendIfNameAbsent
+import io.ktor.util.encodeBase64
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import newReleases
 
 
-/**
- * Created by abdulbasit on 26/02/2023.
- */
 class SpotifyApiImpl : SpotifyApi {
     override suspend fun getTopFiftyChart(): TopFiftyCharts {
+
+
         if (TOKEN.isEmpty()) {
             return Json.decodeFromString<TopFiftyCharts>(topFiftyChartsResponse)
         }
         return client.get {
+
             headers {
-                sptifyEndPoint("v1/playlists/37i9dQZEVXbMDoHDwVN2tF")
+                sptifyEndPoint("v1/playlists/3cEYpjA9oz9GiPac4AsH4n")
             }
+
         }.body()
     }
 
     override suspend fun getNewReleases(): NewReleasedAlbums {
         if (TOKEN.isEmpty()) {
-            return Json.decodeFromString<NewReleasedAlbums>(newReleases)
+            return Json.decodeFromString(newReleases)
         }
         return client.get {
             headers {
@@ -60,10 +70,11 @@ class SpotifyApiImpl : SpotifyApi {
         }
         return client.get {
             headers {
-                sptifyEndPoint("v1/playlists/$playlistId")
+                sptifyEndPoint("v1/playlists/37i9dQZF1E362MRuTYGnA6")
             }
         }.body()
     }
+
 
     private val client = HttpClient {
         expectSuccess = true
@@ -78,9 +89,10 @@ class SpotifyApiImpl : SpotifyApi {
         }
     }
 
+
     private fun HttpRequestBuilder.sptifyEndPoint(path: String) {
         url {
-            takeFrom("https://api.spotify.com/v1/")
+            takeFrom("https://api.spotify.com/")
             encodedPath = path
             headers {
                 append(
@@ -89,4 +101,6 @@ class SpotifyApiImpl : SpotifyApi {
             }
         }
     }
+
+
 }

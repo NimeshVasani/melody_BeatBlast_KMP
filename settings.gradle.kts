@@ -4,6 +4,8 @@ pluginManagement {
         google()
         gradlePluginPortal()
         mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+
     }
 }
 
@@ -19,3 +21,5 @@ dependencyResolutionManagement {
 rootProject.name = "melody_BeatBlast_KMP"
 include(":androidApp")
 include(":shared")
+include(":desktopApp")
+include(":webApp")
