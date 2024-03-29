@@ -18,6 +18,10 @@ We're thrilled to introduce **MelodyBeatBlast**, a revolutionary [Kotlin Multipl
 
 Built With : [Jetpack Compose](https://developer.android.com/develop/ui/compose), [MVVM in KMP](https://www.jetbrains.com/kotlin-multiplatform/#:~:text=Kotlin%20Multiplatform%20is%20a%20technology,Windows%2C%20Linux%2C%20and%20others.), [Spotify Developer Api](https://developer.spotify.com), etc.
 
+![Image 1](https://github.com/NimeshVasani/melody_BeatBlast_KMP/blob/2e21309206d345feb21a093a0ba681991271fb79/screenshots/1.jpg)
+
+
+
 ## Key Features:
 
 - **Cross-Platform Compatibility**: Enjoy your favorite tunes on any device, whether it's your smartphone, tablet, desktop, or laptop.
