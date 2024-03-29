@@ -32,6 +32,7 @@ fun main() {
     val lifecycle = LifecycleRegistry()
     val stateKeeper = StateKeeperDispatcher(tryRestoreStateFromFile())
 
+    
     val rootComponent = runOnUiThread {
         MusicRootImpl(
             componentContext = DefaultComponentContext(
