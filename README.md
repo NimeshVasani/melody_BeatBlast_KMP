@@ -8,6 +8,11 @@ All copyright reserved @Nimesh Vasani
 
 [Stack Overflow](https://stackoverflow.com/users/16579306/nimesh-vasani)
 
+## Getting Started 
+
+This app is working completely fine with Android, Desktop and Web, for iOS need to install pod file manually. I have put dummy playlist in in case if you want to test without actual Spotify TOKEN.
+For setting up TOKEN you need to move to [TOKEN.kt](https://github.com/NimeshVasani/melody_BeatBlast_KMP/blob/082a0ef4e4dd6eab04e9c5536c7b04e133f48225/shared/src/commonMain/kotlin/com/nimesh/vasani/melodybeatblastkmp/Token.kt), update with your new token from [Spotify develoer console](https://developer.spotify.com). Also you can generate manually using [Postman IDE](https://www.postman.com) API req. Make sure all dependency is updated to newwr version.
+
 # About The App
 
 ## MelodyBeatBlast 🎵🚀
