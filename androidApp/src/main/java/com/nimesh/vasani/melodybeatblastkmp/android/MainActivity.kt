@@ -21,6 +21,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
+
+        
         val api = SpotifyApiImpl()
         val root = MusicRootImpl(
             componentContext = defaultComponentContext(),
